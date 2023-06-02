@@ -1,16 +1,15 @@
 package com.example.tapaz.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity(name="avtomobil")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

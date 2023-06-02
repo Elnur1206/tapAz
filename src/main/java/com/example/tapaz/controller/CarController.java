@@ -7,6 +7,7 @@ import com.example.tapaz.pagenation.CarPageResponse;
 import jakarta.validation.Valid;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,10 +29,13 @@ public class CarController {
         return carManager.getById(id);
     }
     @PostMapping("/post")
+    @PreAuthorize("hasRole('Admin')")
     public void saveCar(@RequestBody @Valid Car car){
         carManager.saveCar(new CarDto(car.getColor(), car.getQiymet(), car.getId()));
     }
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('Admin')")
+
     public void deleteCar(@PathVariable int id){
         carManager.deleteById(id);
     }
